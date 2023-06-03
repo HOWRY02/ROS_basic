@@ -1,0 +1,11 @@
+my_diffbot:
+  gazebo_ros_control:
+    pid_gains:
+      right_wheel_joint:
+        p: 0.5
+        i: 0.01
+        d: 0.01
+      left_wheel_joint:
+        p: 0.5
+        i: 0.01
+        d: 0.01

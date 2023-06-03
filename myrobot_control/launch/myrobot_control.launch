@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find myrobot_control)/config/myrobot_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/my_diffbot" args="mobile_base_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    ns="my_diffbot" respawn="false" output="screen">
+    <remap from="/joint_states" to="/my_diffbot/joint_states" />
+  </node>
+
+  <!-- <node pkg="rviz" type="rviz" name="rviz" required="true"></node> -->
+
+</launch>
